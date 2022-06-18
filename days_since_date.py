@@ -51,24 +51,23 @@ while 1:
 years_ago = int(datetime.datetime.now().strftime("%Y")) - int(date[2])
 
 ### Calculate leap days
-leap_days = 0
+days = 0
 for i in range(int(date[2]), int(datetime.datetime.now().strftime("%Y")) + 1):
     if int(datetime.datetime.now().strftime("%m")) > 2 or i != int(datetime.datime.now().strftime("%Y")): # verifies that if the current year is a leap year, day is only counted if 29 Feb has passed
         if i % 4 != 0:
             pass
         elif i % 100 != 0:
-            leap_days += 1
+            days += 1
         elif i % 400 != 0:
             pass
         else:
-            leap_days += 1
+            days += 1
 
 ### Tally
-days_years = years_ago*365 + leap_days
+days += years_ago*365
 
 ## Calculate days from months
 months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-days_months = 0
 
 ### If month is same
 if int(datetime.datetime.now().strftime("%m")) - int(date[1]) == 0:
@@ -76,17 +75,14 @@ if int(datetime.datetime.now().strftime("%m")) - int(date[1]) == 0:
 ### If a later month
 elif int(datetime.datetime.now().strftime("%m")) - int(date[1]) > 0:
     for i in range(int(date[1]) - 1, int(datetime.datetime.now().strftime("%m")) - 1):
-        days_months += months[i]
+        days += months[i]
 ### If an earlier month
 else:
     for i in range(int(datetime.datetime.now().strftime("%m")) - 1, int(date[1]) - 1):
-        days_months -= months[i]
+        days -= months[i]
 
 ## Calulcate days from days
-days_days = int(datetime.datetime.now().strftime("%d")) - int(date[0])
-
-## Tally up total days
-days = days_years + days_months + days_days
+days += int(datetime.datetime.now().strftime("%d")) - int(date[0])
 
 # Return results
 print(f"As of {current_date}, {date[0]}/{date[1]}/{date[2]} was {days} days ago.")
