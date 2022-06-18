@@ -11,8 +11,35 @@ while 1:
         date = str(input("Date: "))
         date = date.split("/")
 
-        # Enforces that days be between 1 and 31 inclusive, months be between 1 and 12 inclusive and years be from 0 AD up until the current year
-        assert int(date[0]) <= 31 and int(date[0]) > 00 and int(date[1]) <= 12 and int(date[1]) > 00 and int(date[2]) <= int(datetime.datetime.now().strftime("%Y")) and int(date[2]) >= 0000
+        # Enforces that months be between 1 and 12 inclusive and years be from 0 AD up until the current year
+        assert int(date[1]) <= 12 and int(date[1]) > 00 and int(date[2]) <= int(datetime.datetime.now().strftime("%Y")) and int(date[2]) >= 0000
+
+        # Enforces that days is actually possible within given month
+        assert int(date[0]) > 00
+
+        ## Months with 31 days
+        if int(date[1]) == 1 or int(date[1]) == 3 or int(date[1]) == 5 or int(date[1]) == 7 or int(date[1]) == 8 or int(date[1]) == 10 or int(date[1]) == 12:
+            assert int(date[0]) <= 31
+        ## Months with 30 days
+        elif int(date[1]) == 4 or int(date[1]) == 6 or int(date[1]) == 9 or int(date[1]) == 11:
+            assert int(date[0]) <= 30
+        ## February
+        else:
+            if int(date[2]) % 4 != 0:
+                assert int(date[0]) <= 28
+            elif int(date[2]) % 100 != 0:
+                assert int(date[0]) <= 29
+            elif int(date[2]) % 400 != 0:
+                assert int(date[0]) <= 28
+            else:
+                assert int(date[0]) <= 29
+
+        # Ensure that date has not already passed
+        if int(date[2]) == int(datetime.datetime.now().strftime("%Y")):
+            assert int(date[1]) <= int(datetime.datetime.now().strftime("%m"))
+
+        if int(date[1]) == int(datetime.datetime.now().strftime("%m")):
+            assert int(date[0]) <= int(datetime.datetime.now().strftime("%d"))
 
         break
     except:
