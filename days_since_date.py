@@ -26,14 +26,15 @@ years_ago = int(datetime.datetime.now().strftime("%Y")) - int(date[2])
 ### Calculate leap days
 leap_days = 0
 for i in range(int(date[2]), int(datetime.datetime.now().strftime("%Y")) + 1):
-    if i % 4 != 0:
-        pass
-    elif i % 100 != 0:
-        leap_days += 1
-    elif i % 400 != 0:
-        pass
-    else:
-        leap_days += 1
+    if int(datetime.datetime.now().strftime("%m")) > 2: # verifies that if the current year is a leap year, day is only counted if 29 Feb has passed
+        if i % 4 != 0:
+            pass
+        elif i % 100 != 0:
+            leap_days += 1
+        elif i % 400 != 0:
+            pass
+        else:
+            leap_days += 1
 
 ### Tally
 days_years = years_ago*365 + leap_days
