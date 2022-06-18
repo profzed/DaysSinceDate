@@ -17,9 +17,11 @@ you need to know the actual definition of a leap year.
 
 This is the definiton for a leap in the Gregorian calendar:
   
-    "The Gregorian leap year rule is: Every year that is exactly divisible by four is a leap year, except for years that are exactly
-    divisible by 100, but these centurial years are leap years if they are exactly divisible by 400. For example, the years 1700, 1800,
-    and 1900 are not leap years, but the year 2000 is." - United States Naval Observatory (https://aa.usno.navy.mil/faq/calendars)
+    "The Gregorian leap year rule is: Every year that is exactly divisible by four is a leap year, except for years that are
+    exactly divisible by 100, but these centurial years are leap years if they are exactly divisible by 400. For example, the
+    years 1700, 1800, and 1900 are not leap years, but the year 2000 is."
+    
+        - United States Naval Observatory (https://aa.usno.navy.mil/faq/calendars)
     
 In more simple terms:
 
@@ -50,7 +52,7 @@ earlier month. If the latter, it adds all the months (day values) that have alre
 pass after the current month up until the current month.
 
 Now is the days section. It simply takes away the input date from the current date. The reasion this handles the leap day when it is the 29 February is
-that: 29 - 28 = 1. That simple.
+that: **29 - 28 = 1**. That simple.
 
 The script then tallies everything up and outputs it. The intial days value from the year section would be a rough estimation: it could be higher or lower
 than the actual value. The month then makes it more acurate, adding or removing extra months. That is still not accurate though so the day section does all
