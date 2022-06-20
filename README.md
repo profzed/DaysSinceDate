@@ -38,8 +38,9 @@ After this, it verifies that it is not a future date. The loop ends with a break
 exit the loop.
 
 Now the program moves onto actually working out how many days ago that date was. First, convert the years. It works out how many years ago it was (current
-year - input year). Using this, it checks every year from the input year to current year. This is almost the same as when verifying there aren't too many
-days with one exception. Every time, it verifies that if 29 February has not passed this year, don't add the additional day (assuming it's the leap year).
+year - input year). This number can be timesed by 365 to work out roughly how many days have been since. It then checks every year from the input year to
+current year. This is almost the same as when verifying there aren't too many days with one exception. Every time, it verifies that if 29 February has not 
+passed this year, don't add the additional day (assuming it's the leap year).
 One thing to note is: if it is 29 February, the leap day should be added. The reasion it is not added here is that this will be handled later. I'll explain
 when we reach that part.
 
@@ -49,11 +50,11 @@ If February has not passed, it will be handled by the day section.
 
 It first checks: "Is the input month the same as the current month?" If it is, this section is over. If not, it checks whether it is a later month or
 earlier month. If the latter, it adds all the months (day values) that have already passed. If the former, it takes away all the months (day values) that
-pass after the current month up until the current month.
+pass after the current month up until the input month.
 
 Now is the days section. It simply takes away the input date from the current date. The reasion this handles the leap day when it is the 29 February is
 that: **29 - 28 = 1**. That simple.
 
-The script then tallies everything up and outputs it. The intial days value from the year section would be a rough estimation: it could be higher or lower
+The script then returns the result. The intial days value from the year section would be a rough estimation: it could be higher or lower
 than the actual value. The month then makes it more acurate, adding or removing extra months. That is still not accurate though so the day section does all
 the fine work, adding/removing days/weeks.
