@@ -46,12 +46,11 @@ while 1:
         print("Invalid input: dates should be formatted DD/MM/YYYY")
 
 # Calculate how long ago that was
+days = 0
 
 ## Calculate days from years
-years_ago = int(datetime.datetime.now().strftime("%Y")) - int(date[2])
 
 ### Calculate leap days
-days = 0
 for i in range(int(date[2]), int(datetime.datetime.now().strftime("%Y")) + 1):
     if int(datetime.datetime.now().strftime("%m")) > 2 or i != int(datetime.datime.now().strftime("%Y")): # verifies that if the current year is a leap year, day is only counted if 29 Feb has passed
         if i % 4 != 0:
@@ -64,7 +63,7 @@ for i in range(int(date[2]), int(datetime.datetime.now().strftime("%Y")) + 1):
             days += 1
 
 ### Tally
-days += years_ago*365
+days += (int(datetime.datetime.now().strftime("%Y")) - int(date[2]))*365
 
 ## Calculate days from months
 months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
